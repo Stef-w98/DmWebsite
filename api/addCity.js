@@ -5,37 +5,33 @@ const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-// Function to set CORS headers
-const setCorsHeaders = (res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*'); // Adjust in production
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-};
-
 module.exports = async (req, res) => {
     // Set CORS headers
-    setCorsHeaders(res);
+    res.setHeader('Access-Control-Allow-Origin', '*'); // Allow any origin
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-    // Handle preflight OPTIONS request
+    // Handle preflight requests
     if (req.method === 'OPTIONS') {
-        return res.status(204).end();
+        return res.status(200).end();
     }
 
     if (req.method === 'POST') {
-        // Extract data from request body
+        // Ensure req.body is parsed as JSON -- Vercel should do this automatically
         const { name, latitude, longitude } = req.body;
 
-        // Insert data into 'cities' table
+        console.log("Received data:", req.body); // Debug: Log received data
+
         const { data, error } = await supabase
             .from('cities')
-            .insert([{ name, latitude, longitude }]); // Adjust columns as per your table's schema
+            .insert([{ name, latitude, longitude }]);
 
         if (error) {
             console.error('Error adding city:', error);
-            return res.status(500).json({ error: 'Failed to add city' });
+            return res.status(500).json({ error: 'Failed to add city', details: error.message });
         }
 
-        res.status(201).json(data); // Send back inserted data as response
+        res.status(201).json(data);
     } else {
         // Respond with method not allowed for non-POST requests
         res.status(405).end();
