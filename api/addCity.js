@@ -22,18 +22,22 @@ module.exports = async (req, res) => {
     }
 
     if (req.method === 'POST') {
+        // Extract data from request body
         const { name, latitude, longitude } = req.body;
-        const { data, error } = await supabase.from('cities').insert([{ name, latitude, longitude }]);
+
+        // Insert data into 'cities' table
+        const { data, error } = await supabase
+            .from('cities')
+            .insert([{ name, latitude, longitude }]); // Adjust columns as per your table's schema
 
         if (error) {
             console.error('Error adding city:', error);
             return res.status(500).json({ error: 'Failed to add city' });
         }
 
-        res.status(201).json(data);
+        res.status(201).json(data); // Send back inserted data as response
     } else {
         // Respond with method not allowed for non-POST requests
         res.status(405).end();
     }
 };
-
