@@ -1,0 +1,33 @@
+/* Reset the margin and padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+/* Make the map container fill the entire screen */
+#fantasyMap {
+    width: 100vw; /* 100% of the viewport width */
+    height: 100vh; /* 100% of the viewport height */
+    position: absolute; /* Position it in a way that it always fills the screen */
+}
+
+.sidebar {
+    height: 100%;
+    width: 0; /* Initially set to 0 to hide the sidebar */
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s; /* Smooth transition */
+    padding-top: 60px; /* Space for the header */
+}
+
+.sidebar h2 {
+    padding: 10px 15px;
+}
+
+.sidebarContent {
+    padding: 15px;
+}
