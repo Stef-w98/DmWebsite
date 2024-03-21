@@ -3,15 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #333;
             color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             height: 100vh;
             margin: 0;
         }
@@ -44,24 +40,42 @@
         button:hover {
             opacity: 0.8;
         }
+
+        .form-box{
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
     </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1"></script>
+
 </head>
 <body>
-<h2>Login</h2>
-<form id="login-form">
-    <input type="email" id="login-email" placeholder="Email" required>
-    <input type="password" id="login-password" placeholder="Password" required>
-    <button type="submit">Login</button>
-</form>
+<header id="navbar-container">
+    <!-- Navbar will be loaded here -->
+</header>
 
-<h2>Register</h2>
-<form id="registration-form">
-    <input type="email" id="register-email" placeholder="Email" required>
-    <input type="password" id="register-password" placeholder="Password" required>
-    <button type="submit">Register</button>
-</form>
+<div class="form-box">
+    <h2>Login</h2>
+    <form id="login-form">
+        <input type="email" id="login-email" placeholder="Email" required>
+        <input type="password" id="login-password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
 
-<script defer src="register.js"></script>
+    <h2>Register</h2>
+    <form id="registration-form">
+        <input type="email" id="register-email" placeholder="Email" required>
+        <input type="password" id="register-password" placeholder="Password" required>
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+<script defer type="module" src="register.js"></script>
+<script defer  type="module" src="./../../lib/components/navbarLoader.js"></script>
 </body>
 </html>
 
