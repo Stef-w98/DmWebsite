@@ -18,13 +18,43 @@ module.exports = async (req, res) => {
 
     if (req.method === 'POST') {
         // Ensure req.body is parsed as JSON -- Vercel should do this automatically
-        const { name, latitude, longitude } = req.body;
+        // Destructure all expected fields from req.body
+        const {
+            name,
+            description,
+            latitude,
+            longitude,
+            npc,
+            history,
+            culture,
+            economy,
+            politics,
+            religion,
+            climate,
+            points_of_interest,
+            populations
+        } = req.body;
 
         console.log("Received data:", req.body); // Debug: Log received data
 
+        // Pass the destructured fields directly into the insert method
         const { data, error } = await supabase
             .from('cities')
-            .insert([{ name, latitude, longitude }]);
+            .insert([{
+                name,
+                description,
+                latitude,
+                longitude,
+                npc,
+                history,
+                culture,
+                economy,
+                politics,
+                religion,
+                climate,
+                points_of_interest,
+                populations
+            }]);
 
         if (error) {
             console.error('Error adding city:', error);
@@ -36,4 +66,5 @@ module.exports = async (req, res) => {
         // Respond with method not allowed for non-POST requests
         res.status(405).end();
     }
+
 };

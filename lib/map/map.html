@@ -12,16 +12,22 @@
     <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1"></script>
     <script defer type="module" src="mapJS.js"></script>
     <style>
+        /* Sidebar Styling */
         .sidebar {
             position: fixed;
-            right: -250px; /* Adjust to start off-screen to the right */
-            top: 50px; /* Adjust this value based on your navbar's height */
-            width: 250px;
-            height: calc(100% - 50px); /* Adjust the height to fill the rest of the viewport */
-            background-color: #333;
-            color: #fff;
+            right: -300px;
+            top: 50px;
+            width: 300px;
+            height: calc(100% - 50px);
+            background-color: #2C3E50;
+            color: #ECF0F1;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
             transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             z-index: 1000;
+            padding-top: 0;
         }
 
         .sidebar.open {
@@ -33,7 +39,115 @@
         }
 
         .map-container.expanded {
-            margin-right: 250px; /* Adjust margin to the right when sidebar is open */
+            margin-right: 300px;
+        }
+
+        /* Sidebar Content Styling */
+        #sidebar-content {
+            padding: 20px;
+            overflow-y: auto;
+            flex-grow: 1;
+            margin-bottom: 40px;
+        }
+
+        /* Sidebar Footer Styling */
+        .sidebar-footer {
+            padding: 16px;
+            background: #34495E;
+            text-align: center;
+            margin-bottom: 0.1rem;
+        }
+
+        /* Close Button Styling */
+        #close-sidebar {
+            background-color: #E74C3C;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%;
+            border-top: 1px solid #C0392B;
+        }
+
+        #close-sidebar:hover {
+            background-color: #C0392B;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: absolute;
+                box-shadow: none;
+            }
+
+            .map-container.expanded {
+                margin-right: 0;
+            }
+
+            .sidebar.open {
+                bottom: 0;
+                right: 0;
+            }
+        }
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.2); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            opacity: 90%;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 40%; /* Could be more or less, depending on screen size */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Style inputs, textareas and the submit button */
+        #addCityForm input[type=text],
+        #addCityForm textarea,
+        #addCityForm input[type=submit] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        #addCityForm input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #addCityForm input[type=submit]:hover {
+            opacity: 0.8;
         }
 
     </style>
@@ -46,7 +160,40 @@
     <div id="sidebar-content">
         <!-- Dynamic content will be loaded here -->
     </div>
-    <button id="close-sidebar">Close</button>
+    <div class="sidebar-footer">
+        <button id="close-sidebar">Close</button>
+    </div>
+</div>
+<div id="cityFormModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>City Details</h2>
+        <form id="addCityForm">
+            <label for="cityName">Name:</label>
+            <input type="text" id="cityName" name="name" required>
+            <label for="cityDescription">Description:</label>
+            <textarea id="cityDescription" name="description"></textarea>
+            <label for="cityNpc">NPC:</label>
+            <input type="text" id="cityNpc" name="npc">
+            <label for="cityHistory">History:</label>
+            <textarea id="cityHistory" name="history"></textarea>
+            <label for="cityCulture">Culture:</label>
+            <textarea id="cityCulture" name="culture"></textarea>
+            <label for="cityEconomy">Economy:</label>
+            <textarea id="cityEconomy" name="economy"></textarea>
+            <label for="cityPolitics">Politics:</label>
+            <textarea id="cityPolitics" name="politics"></textarea>
+            <label for="cityReligion">Religion:</label>
+            <textarea id="cityReligion" name="religion"></textarea>
+            <label for="cityClimate">Climate:</label>
+            <textarea id="cityClimate" name="climate"></textarea>
+            <label for="cityPointsOfInterest">Points of Interest:</label>
+            <textarea id="cityPointsOfInterest" name="points_of_interest"></textarea>
+            <label for="cityPopulations">Populations:</label>
+            <input type="text" id="cityPopulations" name="populations">
+            <input type="submit" value="Save City">
+        </form>
+    </div>
 </div>
 <div id="fantasyMap"></div>
 <script defer type="module" src="./../../lib/components/navbarLoader.js"></script>
