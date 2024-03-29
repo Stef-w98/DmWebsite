@@ -8,15 +8,53 @@
     <script defer src="partyJS.js"></script>
 </head>
 <body>
-<div id="cards-container">
-    <!-- The Add Card -->
-    <div class="card add-card" onclick="window.location.href='/add-character.html';">
-        <div class="add-content">
-            <span class="add-icon">+</span>
-            <p>Add Character</p>
+<header id="navbar-container">
+    <!-- Navbar will be loaded here -->
+</header>
+<div class="content-flex-container"> <!-- New div to apply flexbox properties -->
+    <div id="cards-container">
+        <!-- The Add Card -->
+        <div class="card add-card" onclick="window.location.href='/add-character.html';">
+            <div class="add-content">
+                <span class="add-icon">+ Add Character</span>
+            </div>
+        </div>
+        <!-- Placeholder for Character Cards -->
+    </div>
+    <!-- The Modal -->
+    <div id="addCharacterModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Character</h2>
+            <!-- Updated form with all fields -->
+            <form id="addCharacterForm">
+                <input type="text" placeholder="Name" name="name" required>
+                <input type="text" placeholder="Race" name="race" required>
+                <input type="text" placeholder="Class" name="class" required>
+                <input type="number" placeholder="Level" name="level" min="1" required>
+                <textarea placeholder="Backstory" name="backstory"></textarea>
+                <input type="text" placeholder="Alignment" name="alignment">
+                <input type="text" placeholder="Player Name" name="playername" required>
+                <input type="number" placeholder="Strength" name="strength">
+                <input type="number" placeholder="Dexterity" name="dexterity">
+                <input type="number" placeholder="Constitution" name="constitution">
+                <input type="number" placeholder="Intelligence" name="intelligence">
+                <input type="number" placeholder="Wisdom" name="wisdom">
+                <input type="number" placeholder="Charisma" name="charisma">
+                <input type="text" placeholder="Hit Points" name="hitpoints" required>
+                <textarea placeholder="Equipment" name="equipment"></textarea>
+                <textarea placeholder="Spells" name="spells"></textarea>
+                <input type="text" placeholder="Factions" name="factions">
+                <textarea placeholder="Personality Traits" name="personalitytraits"></textarea>
+                <textarea placeholder="Ideals" name="ideals"></textarea>
+                <textarea placeholder="Bonds" name="bonds"></textarea>
+                <textarea placeholder="Flaws" name="flaws"></textarea>
+                <button type="submit">Add Character</button>
+            </form>
         </div>
     </div>
-    <!-- Placeholder for Character Cards -->
 </div>
+<script defer type="module" src="./../../lib/components/navbarLoader.js"></script>
 </body>
 </html>
