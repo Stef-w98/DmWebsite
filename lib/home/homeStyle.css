@@ -65,19 +65,6 @@ a:hover {
     to { opacity: 1; }
 }
 
-#heroVideo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: 1;
-    background-size: cover;
-}
-
 .backgroundimg{
     width: 100%;
     z-index: 1;
@@ -85,7 +72,7 @@ a:hover {
 
 .hero-content {
     position: relative;
-    z-index: 2; /* Ensure content is above the video */
+    z-index: 2;
     top: -80%;
     left: 50%;
     transform: translate(-50%, -50%);
