@@ -1,6 +1,6 @@
 :root {
     --primary-color: #333; /* Dark color for the background */
-    --highlight-color: #ffcc00; /* Color for hover effects and highlights */
+    --highlight-color: #2d7ffa; /* Color for hover effects and highlights */
     --text-color: #fff; /* Light color for text for contrast against the dark background */
 }
 
@@ -11,7 +11,7 @@ body, html {
 }
 
 header {
-    background-color: var(--primary-color); /* Ensure this is applied to the navbar *
+    background-color: var(--primary-color); /* Ensure this is applied to the navbar */
 }
 
 #navbar-container, #navbar {
@@ -40,11 +40,24 @@ header {
     transition: color 0.3s;
 }
 
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .nav-links a:hover {
     color: var(--highlight-color);
 }
 
-.logo h1 {
-    color: var(--highlight-color);
-    margin: 0;
+.logo img {
+    height: 50px;
+}
+
+.site-title{
+    margin-left: 1rem;
+    color: white;
+    font-family: "MedievalSharp", cursive;
+    font-weight: 400;
+    font-style: normal;
 }
