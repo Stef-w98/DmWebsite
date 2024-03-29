@@ -83,6 +83,12 @@ a:hover {
     font-style: normal;
 }
 
+.hero-content img {
+    width: 460px;
+    height: auto;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
 .hero-content h1 {
     font-size: 3em; /* Increased initial size for impact */
     margin-bottom: 0.5em;
