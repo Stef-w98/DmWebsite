@@ -18,26 +18,21 @@ module.exports = async (req, res) => {
     }
 
     if (req.method === 'POST') {
-        // Assume that the incoming request body format is JSON
+        // Extract the character data from the request body
         const character = req.body;
 
-        try {
-            const { data, error } = await supabase
-                .from('characters')
-                .insert([
-                    character // Assuming character contains { name, race, class, level, backstory }
-                ]);
+        // Insert the new character into the database
+        const { data, error } = await supabase
+            .from('characters')
+            .insert([character]);
 
-            if (error) throw error;
-
-            // Respond with the newly added character
-            res.status(201).json(data);
-        } catch (error) {
+        if (error) {
+            // Handle the error appropriately
             console.error('Error adding character:', error);
             return res.status(500).json({ error: 'Failed to add character' });
         }
-    } else {
-        // Handle other HTTP methods or return a message that the method is not supported
-        res.status(405).json({ error: 'Method Not Allowed' });
+
+        // Successfully added the character
+        return res.status(201).json(data);
     }
 };
