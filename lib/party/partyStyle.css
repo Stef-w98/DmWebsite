@@ -24,7 +24,7 @@ body, html {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%; /* Full width */
+    width: 100%;
 }
 
 #cards-container {
@@ -49,13 +49,13 @@ body, html {
     flex-direction: column;
     align-items: center;
     padding: 15px;
-    border: 1px solid transparent; /* Prepare for hover effect */
+    border: 1px solid transparent;
 }
 
 .card img {
     max-width: 100%;
-    max-height: 120px; /* Limit image height */
-    object-fit: cover; /* Ensure images cover the area well */
+    max-height: 250px;
+    object-fit: contain;
 }
 
 .card h3, .card p {
@@ -82,16 +82,16 @@ body, html {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8); /* Darker background for better focus on modal */
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .modal-content {
     background-color: var(--card-background-color);
-    margin: 10% auto; /* More central positioning */
+    margin: 10% auto;
     padding: 20px;
-    border: 1px solid #444; /* Subtler border */
-    width: 90%; /* Responsive width */
-    max-width: 600px; /* Max width for large screens */
+    border: 1px solid #444;
+    width: 90%;
+    max-width: 600px;
     border-radius: var(--card-border-radius);
 }
 
@@ -115,12 +115,12 @@ body, html {
 .modal-content form input[type="text"]:focus,
 .modal-content form input[type="number"]:focus,
 .modal-content form textarea:focus {
-    border-color: var(--accent-color); /* Highlight focus with accent color */
-    outline: none; /* Remove default focus outline */
+    border-color: var(--accent-color);
+    outline: none;
 }
 
 .modal-content form button {
-    grid-column: 1 / -1; /* Span across all columns */
+    grid-column: 1 / -1;
     padding: 12px 0;
     background-color: var(--accent-color);
     color: var(--background-color);
@@ -131,10 +131,9 @@ body, html {
 }
 
 .modal-content form button:hover {
-    background-color: #2d7ffa; /* A lighter shade of the accent color for hover effect */
+    background-color: #2d7ffa;
 }
 
-/* Additional styles for the modal form to ensure it fits well with the theme */
 .modal-content form label {
     color: var(--text-color);
     margin-bottom: 5px;
@@ -152,16 +151,44 @@ body, html {
 }
 
 .add-card:hover {
-    background-color: #333; /* Darken on hover for interactivity */
-    transform: translateY(-5px); /* Slight lift effect */
+    background-color: #333;
+    transform: translateY(-5px);
 }
 
-/* Ensure the close button in the modal matches the theme */
+.card-img-top {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.card-title {
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.card-text {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
 .close {
     cursor: pointer;
     transition: color var(--transition-speed);
 }
 
 .close:hover {
-    color: var(--accent-color); /* Brighten the color on hover for visibility */
+    color: var(--accent-color);
 }
